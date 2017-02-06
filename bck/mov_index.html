@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app='MsgApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>body { font-size: 1.2em;}</style>
+    <title>Moviepickr</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+    #main {
+      float:left;
+      width:600px;
+      padding:10px;
+      background:#9c9;
+    }
+    #sidebar {
+      float:left;
+      width:600px;
+      padding:10px;
+      background:#99c;
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Choose your favorite movie</h1>
+      <div ng-controller="MsgController">
+        <div>
+          {{name}} has a message is: <br>
+          {{sayMessage()}}
+        </div>
+        <div id="main">
+          <button ng-click="pickMovie()">Pick Movie</button>
+          <br>
+          <img src="posters/{{movie}}.jpg">
+        </div>
+        <div id="sidebar">
+          <button ng-click="pickMovie()">Pick Movie</button>
+          <br>
+          <img ng-ssrc="posters/{{movie}}.jpg">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

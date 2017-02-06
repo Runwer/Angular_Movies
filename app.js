@@ -1,31 +1,61 @@
 (function () {
-'use strict';
+  'use strict';
 
-angular.module('NameCalculator', [])
+  angular.module('MovieApp', [])
+  .controller('MovieController', MovieController);
 
-.controller('NameCalculatorController',NameCalculatorController);
-NameCalculatorController.$inject = [$scope];
 
-function NameCalculatorController($scope){
-  $scope.name = "";
-  $scope.totalValue = 0;
+  MovieController.$inject = ['$scope', '$http'];
+  function MovieController($scope, $http) {
+      //Test of json parser
+    $scope.i = 0
+    $http({
+    method: 'GET',
+    url: "movies.json"
+    }).then(function successCallback(response) {
+      $scope.alljson = response.data.movies;
+      $scope.movieOne = $scope.alljson[$scope.i]
+      $scope.movieTwo = $scope.alljson[$scope.i + 1]
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
 
-  $scope.displayNumeric = function(){
-    var totalNameValue = calculateNumericString($scope.name); //get total value
-    $scope.totalValue = totalNameValue;
+
+    $scope.pickMovie = function (){
+      $http({
+      method: 'GET',
+      url: "movies.json"
+      }).then(function successCallback(response) {
+        $scope.alljson = response.data.movies;
+        $scope.movieOne = $scope.alljson[$scope.i]
+        $scope.movieTwo = $scope.alljson[$scope.i + 1]
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+      $scope.i += 2;
+    }
+
+    $scope.changeMovie = function (mov){
+      $http({
+      method: 'GET',
+      url: "movies.json"
+      }).then(function successCallback(response) {
+        $scope.alljson = response.data.movies;
+        $scope.movieOne = $scope.alljson[$scope.i+1]
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
+      $scope.i += 1;
+    }
+
+
+
+
+
   };
 
-function calculateNumericString(string){
-  var totalStringValue = 0;
-  for (var i = 0; i < string.length; i++) {
-    totalStringValue += string.charCodeAt(i);
-  }
-  return totalStringValue
-
-
-}
-
-
-}
 
 })();

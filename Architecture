@@ -1,0 +1,12 @@
+Architecture
+
+Python supplies API through Flask.
+Called for Angular.
+GET two random movies #(possibly within genre or search)
+  This random is filtered for not seen as well already matched movies
+User selects 'New pick' if he has not seen movie.
+This will lead to new random selection on one movie + movie indexed as "not seen"
+User will pick best movie
+=> send [ID > ID] to Python
+Python saves edge + indexes moviepair as matched
+Python calculates new rating (possibly only when 'Create my list' is click)

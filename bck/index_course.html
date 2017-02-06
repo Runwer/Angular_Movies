@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app='MsgApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Moviepickr</title>
+
+  </head>
+  <body>
+    <div>
+      <h1>Choose your favorite movie</h1>
+      <div ng-controller="MsgController">
+        <div>
+          {{name}} has a message: <br>
+          {{sayMessage()}}
+          Loves: {{sayLovesMessage()}} <br>
+          Truth: {{sayLovesMessage() | truth : 'healthy' : 'cookie'}}
+        </div>
+        <ul>
+          <li ng-repeat="x in json">
+            {{ x.Title }}
+          </li>
+          </ul>
+      </div>
+    </div>
+  </body>
+</html>

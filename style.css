@@ -1,0 +1,14 @@
+body { font-size: 1.2em;}
+
+#main {
+  float:left;
+  width:600px;
+  padding:10px;
+  background:#9c9;
+}
+#sidebar {
+  float:right;
+  width:600px;
+  padding:10px;
+  background:#99c;
+}

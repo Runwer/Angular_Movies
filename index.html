@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='MovieApp'>
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <style>body { font-size: 1.3em;}</style>
+    <link rel="stylesheet" href="style.css">
     <title>Moviepickr</title>
+
   </head>
-  <body ng-app="NameCalculator">
-    <h1>Choose your favorite movie</h1>
-    <div ng-controller="NameCalculatorController">
-      <div>
-        Your name:
-        <input type="text"
-        ng-model="name"
-        ng-keyup="displayNumeric();"  
-        >
+  <body>
+    <div>
+      <h1>Choose your favorite movie</h1>
+      <div ng-controller="MovieController">
+
+        <div>
+          <p>Pick which movie you like most of this fight</p>
+
+          <div id="main">
+              {{ movieOne.Title }}
+              ({{ movieOne.Year}})
+              <button ng-click="pickMovie()">Pick Movie</button>
+              <button ng-click="changeMovie()">I have not seen Movie</button>
+              <br>
+              <br>
+              <img ng-src="posters/{{movieOne.Poster}}.jpg">
+          </div>
+          <div id="sidebar">
+              {{ movieTwo.Title }}
+              ({{ movieTwo.Year}})
+              <button ng-click="pickMovie()">Pick Movie</button>
+              <br>
+              <br>
+              <img ng-src="posters/{{movieTwo.Poster}}.jpg">
+          </div>
+        </div>
       </div>
-      <div>Total Numeric value of name is:
-      {{totalValue}}</div>
     </div>
   </body>
 </html>
