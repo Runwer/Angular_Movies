@@ -1,9 +1,12 @@
 .backcolor{
   background-color: #202020;
-  color: #F1FFF1
+  color: #F1FFF1;
 }
 
-
+.btn-warning {
+  font-weight: bold;;
+  color: #000000;
+}
 
 .picpad {
   padding-top: 10px;
@@ -16,4 +19,8 @@
 
 .top {
   padding-left: 20px;
+}
+
+.center {
+  padding-bottom: 20px;
 }

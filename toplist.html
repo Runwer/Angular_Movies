@@ -5,17 +5,33 @@
      <meta charset="UTF-8">
      <title>TITLE</title>
      <meta name="description" content="DESCRIPTION">
+     <link rel="stylesheet" href="css/bootstrap.css">
      <link rel="stylesheet" href="css/style.css">
 
 
  </head>
 
- <body ng-app='ListApp'>
-   <div ng-controller='ShoppingListController'>
-     <ul>
-       <li ng-repeat="item in shoppingList2">{{$index + 1}}. Buy {{item.quantity}} of {{item.name}}(s)</li>
-     </ul>
+ <body class="backcolor" ng-app='ListApp'>
+   <div class="top">
+   <h1>Your toplist</h1>
+   <h3>Enjoy the fruits of your effort - your own top list</h3>
    </div>
+   <br>
+   <div class="row">
+     <div class="col-md-1"></div>
+     <div class="col-md-8">
+
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          The top movies
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">1) Blade Runner</a>
+        <a href="#" class="list-group-item list-group-item-action">2) Alien</a>
+        <a href="#" class="list-group-item list-group-item-action">3) Metropolis</a>
+        <a href="#" class="list-group-item list-group-item-action disabled">4) The Hobbit</a>
+        <a href="#" class="list-group-item list-group-item-action disabled">5) Interstellar</a>
+      </div>
+
 
  </body>
 
