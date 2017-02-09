@@ -1,47 +1,41 @@
 <!DOCTYPE html>
-<html ng-app='MsgApp'>
+<html ng-app='MovieApp'>
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <style>body { font-size: 1.2em;}</style>
-    <title>Moviepickr</title>
     <link rel="stylesheet" href="style.css">
+    <title>fliqpick</title>
 
-    <style>
-    #main {
-      float:left;
-      width:600px;
-      padding:10px;
-      background:#9c9;
-    }
-    #sidebar {
-      float:left;
-      width:600px;
-      padding:10px;
-      background:#99c;
-    }
-    </style>
   </head>
   <body>
-    <div>
+    <div ng-controller="MovieController">
+      <div class="top">
       <h1>Choose your favorite movie</h1>
-      <div ng-controller="MsgController">
-        <div>
-          {{name}} has a message is: <br>
-          {{sayMessage()}}
-        </div>
-        <div id="main">
-          <button ng-click="pickMovie()">Pick Movie</button>
-          <br>
-          <img src="posters/{{movie}}.jpg">
-        </div>
-        <div id="sidebar">
-          <button ng-click="pickMovie()">Pick Movie</button>
-          <br>
-          <img ng-ssrc="posters/{{movie}}.jpg">
-        </div>
+      <p>Pick which movie you like most of this fight</p>
       </div>
+          <div class="left">
+              {{ movieOne.Title }}
+              ({{ movieOne.Year}})
+              <button ng-click="pickMovie()">Pick Movie</button>
+              <button ng-click="changeMovie()">I have not seen Movie</button>
+              <br>
+              <br>
+              <img ng-src="posters/{{movieOne.Poster}}.jpg">
+          </div>
+          <div class="center">
+          <button type="button" name="View Toplist">Go to toplist</button>
+          </div>
+
+          <div class="right">
+              {{ movieTwo.Title }}
+              ({{ movieTwo.Year}})
+              <button ng-click="pickMovie()">Pick Movie</button>
+              <button ng-click="changeMovie()">I have not seen Movie</button>
+              <br>
+              <br>
+              <img ng-src="posters/{{movieTwo.Poster}}.jpg">
+          </div>
     </div>
   </body>
 </html>

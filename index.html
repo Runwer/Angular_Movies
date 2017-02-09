@@ -9,14 +9,12 @@
 
   </head>
   <body>
-    <div>
+    <div ng-controller="MovieController">
+      <div class="top">
       <h1>Choose your favorite movie</h1>
-      <div ng-controller="MovieController">
-
-        <div>
-          <p>Pick which movie you like most of this fight</p>
-
-          <div id="main">
+      <p>Pick which movie you like most of this fight</p>
+      </div>
+          <div class="left">
               {{ movieOne.Title }}
               ({{ movieOne.Year}})
               <button ng-click="pickMovie()">Pick Movie</button>
@@ -25,16 +23,24 @@
               <br>
               <img ng-src="posters/{{movieOne.Poster}}.jpg">
           </div>
-          <div id="sidebar">
+          <div class="center">
+            <br>
+            <form action="/toplist.html">
+              <input type="submit" value="Go to your Toplist" />
+            </form>
+
+
+          </div>
+
+          <div class="right">
               {{ movieTwo.Title }}
               ({{ movieTwo.Year}})
               <button ng-click="pickMovie()">Pick Movie</button>
+              <button ng-click="changeMovie()">I have not seen this Movie</button>
               <br>
               <br>
               <img ng-src="posters/{{movieTwo.Poster}}.jpg">
           </div>
-        </div>
-      </div>
     </div>
   </body>
 </html>

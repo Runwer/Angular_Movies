@@ -1,14 +1,21 @@
 body { font-size: 1.2em;}
 
-#main {
+.top {
+  width: 100%;
+}
+.left {
   float:left;
-  width:600px;
+  width:40%;
   padding:10px;
   background:#9c9;
 }
-#sidebar {
+.right {
   float:right;
-  width:600px;
+  width:40%;
   padding:10px;
   background:#99c;
+}
+.center {
+  display: inline-block;
+  width: 20%;
 }
