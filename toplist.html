@@ -1,17 +1,22 @@
- <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
      <meta charset="UTF-8">
      <title>TITLE</title>
      <meta name="description" content="DESCRIPTION">
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="css/style.css">
 
 
  </head>
 
- <body>
+ <body ng-app='ListApp'>
+   <div ng-controller='ShoppingListController'>
+     <ul>
+       <li ng-repeat="item in shoppingList2">{{$index + 1}}. Buy {{item.quantity}} of {{item.name}}(s)</li>
+     </ul>
+   </div>
 
  </body>
 
- </html>
+</html>
