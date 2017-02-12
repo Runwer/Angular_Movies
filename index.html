@@ -2,8 +2,8 @@
 <html ng-app='MovieApp'>
   <head>
     <meta charset="utf-8">
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
     <script type="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,7 +11,7 @@
 
   </head>
   <body class="backcolor">
-    <div ng-controller="MovieController">
+    <div ng-controller="MovieController as moviectrl">
       <div class="top">
       <h1>Choose your favorite movie</h1>
       <h3 class="text-center">Movie Fight! Pick the best movie</h3>
@@ -19,22 +19,24 @@
         <div class="row">
           <div class="col-md-5">
             <div class="text-center">
-              <h4>{{ movieOne.Title }}
-              ({{ movieOne.Year}})</h4>
-              <button type="button" class="btn btn-success" ng-click="pickMovie()">Pick Movie</button>
-              <button type="button" class="btn btn-warning" ng-click="changeMovie()">I have not seen Movie</button>
+              <h4>{{ moviectrl.movieOne.Title }}
+              ({{ moviectrl.movieOne.Year}})</h4>
+              <button type="button" class="btn btn-success" ng-click="moviectrl.pickMovie()">Pick Movie</button>
+              <button type="button" class="btn btn-warning" ng-click="moviectrl.changeMovieOne()">I have not seen Movie</button>
             </div>
-            <img class="img-responsive center-block picpad" ng-src="posters/{{movieOne.Poster}}.jpg">
+            <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.movieOne.Poster}}.jpg">
           </div>
           <div class="col-md-2 text-center">
 
             <br>
               <a href="/toplist.html" class="btn btn-primary btn-lg active col-md-12 text-center botmarg" role="button" aria-pressed="true">Go to your Toplist</a>
               <div class="center">
-                <img class="img-responsive center-block picpad" ng-src="posters/{{movieOne.Poster}}_small.jpg">
-                <h2 class="text-center">44%</h2>
-                <h2 class="text-center">56%</h2>
-                <img class="img-responsive center-block picpad" ng-src="posters/{{movieTwo.Poster}}_small.jpg">
+                <div ng-if="moviectrl.oldMovieOne != ''">
+                  <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.oldMovieOne.Poster}}_small.jpg">
+                  <h2 class="text-center">44%</h2>
+                  <h2 class="text-center">56%</h2>
+                  <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.oldMovieTwo.Poster}}_small.jpg">
+                </div>
               </div>
             </form>
 
@@ -44,12 +46,12 @@
           <div class="col-md-5">
             <div class="text-center">
               <h4>
-              {{ movieTwo.Title }}
-              ({{ movieTwo.Year}})</h4>
-              <button type="button" class="btn btn-success" ng-click="pickMovie()">Pick Movie</button>
-              <button type="button" class="btn btn-warning" ng-click="changeMovie()">I have not seen this Movie</button>
-            </div>
-            <img class="img-responsive center-block picpad" ng-src="posters/{{movieTwo.Poster}}.jpg">
+              {{ moviectrl.movieTwo.Title}}
+              ({{ moviectrl.movieTwo.Year}})</h4>
+              <button type="button" class="btn btn-success" ng-click="moviectrl.pickMovie()">Pick Movie</button>
+              <button type="button" class="btn btn-warning" ng-click="moviectrl.changeMovieTwo()">I have not seen Movie</button>
+              </div>
+            <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.movieTwo.Poster}}.jpg">
           </div>
         </div>
     </div>
