@@ -18,7 +18,8 @@
     moviectrl.oldMovieOne = ""
     moviectrl.oldMovieTwo = ""
 
-    this.pickMovie = function (){
+    this.pickMovie = function (e){
+      moviectrl.picked = e.target.getAttribute('data-value');
       moviectrl.oldMovieOne = moviectrl.movieOne;
       moviectrl.oldMovieTwo = moviectrl.movieTwo;
       MovieDataService.newMovies().then(function(d){
