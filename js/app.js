@@ -3,42 +3,79 @@
 
   angular.module('MovieApp', [])
   .controller('MovieController', MovieController)
-  .service('MovieDataService',  MovieDataService);
+  .controller('MovieList', MovieList)
+  .service('MovieDataService',  MovieDataService)
+  .service('MovieListService',  MovieListService);
 
-  MovieController.$inject = ['MovieDataService'];
-  function MovieController(MovieDataService) {
+  MovieList.$inject = ['MovieListService', '$rootScope'];
+  function MovieList(MovieListService, $rootScope) {
+    var movielst = this;
+    MovieListService.listMovies().then(function(dat){
+      $rootScope.lst = dat
+      console.log($rootScope.lst)
+    });
+
+  }
+
+  MovieController.$inject = ['MovieDataService', '$http','MovieListService', '$rootScope'];
+  function MovieController(MovieDataService, $http,MovieListService, $rootScope) {
     var moviectrl = this;
 
-    MovieDataService.newMovies().then(function(d){
-      moviectrl.movieOne = d
-    });
-    MovieDataService.newMovies().then(function(d){
-      moviectrl.movieTwo = d
+    MovieDataService.newMovies("2").then(function(d){
+      moviectrl.movieOne = d[0]
+      moviectrl.movieTwo = d[1]
     });
     moviectrl.oldMovieOne = ""
     moviectrl.oldMovieTwo = ""
 
+
+
     this.pickMovie = function (e){
       moviectrl.picked = e.target.getAttribute('data-value');
+      if(moviectrl.picked == "Mov1") {
+        var data = {
+                  win: moviectrl.movieOne.id,
+                  loose: moviectrl.movieTwo.id
+              };
+      } else {
+        var data = {
+                  win: moviectrl.movieTwo.id,
+                  loose: moviectrl.movieOne.id
+              };
+      };
+
+
+      $http.post('http://127.0.0.1:5000/moviedb/api/v1.0/edge', data)
+            .then(function (data, status, headers) {
+                console.log(data);
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              return response;
+            })
+            ;
+
       moviectrl.oldMovieOne = moviectrl.movieOne;
       moviectrl.oldMovieTwo = moviectrl.movieTwo;
-      MovieDataService.newMovies().then(function(d){
-        moviectrl.movieOne = d
+      MovieDataService.newMovies("2").then(function(d){
+        moviectrl.movieOne = d[0]
+        moviectrl.movieTwo = d[1]
       });
-      MovieDataService.newMovies().then(function(d){
-        moviectrl.movieTwo = d
+      MovieListService.listMovies().then(function(dat){
+        $rootScope.lst = dat
+        console.log($rootScope.lst)
       });
     }
 
     this.changeMovieOne = function (){
-      MovieDataService.newMovies().then(function(d){
-        moviectrl.movieOne = d
+      MovieDataService.newMovies("1&vsmovie="+moviectrl.movieTwo.id).then(function(d){
+        moviectrl.movieOne = d[0]
       });
     }
 
     this.changeMovieTwo = function (){
-      MovieDataService.newMovies().then(function(d){
-        moviectrl.movieTwo = d
+      MovieDataService.newMovies("1&vsmovie="+moviectrl.movieOne.id).then(function(d){
+        moviectrl.movieTwo = d[0]
       });
     }
 
@@ -51,15 +88,13 @@
 
     //List of movies
     var movieout = [];
-    var counter = -1;
 
-    service.newMovies = function (){
+    service.newMovies = function (count){
       var promise = $http({
       method: 'GET',
-      url: "movies.json"
+      url: "http://127.0.0.1:5000/moviedb/api/v1.0/movies?count="+count
       }).then(function successCallback(response) {
-        counter += 1
-        return response.data.movies[counter];
+        return response.data.movies;
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -72,10 +107,27 @@
       return "movie"
     }
   }
-})();
 
-this.getById = function(id){
-  return $http.get(urlList.getCustomer + id).success(function (data) {
-    return data;
-  });
-}
+  function MovieListService ($http) {
+    var service = this;
+
+
+    //List of movies
+    var movieout = [];
+
+    service.listMovies = function (){
+      var promise = $http({
+      method: 'GET',
+      url: "http://127.0.0.1:5000/moviedb/api/v1.0/toplist"
+      }).then(function successCallback(response) {
+        return response.data.list;
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        return response
+      });
+      return promise;
+    };
+
+  }
+})();

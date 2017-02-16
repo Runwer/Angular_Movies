@@ -23,13 +23,25 @@
               ({{ moviectrl.movieOne.Year}})</h4>
               <button type="button" class="btn btn-success" ng-click="moviectrl.pickMovie($event)" data-value="Mov1">Pick Movie</button>
               <button type="button" class="btn btn-warning" ng-click="moviectrl.changeMovieOne()">I have not seen Movie</button>
+
             </div>
-            <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.movieOne.Poster}}.jpg">
+            <img class="img-responsive center-block picpad clickpic" ng-click="moviectrl.pickMovie($event)" data-value="Mov1" ng-src="posters/{{moviectrl.movieOne.Poster}}.jpg">
           </div>
           <div class="col-md-2 text-center">
 
             <br>
+            <div ng-controller="MovieList">
+              <div ng-repeat="values in lst"><p>{{values.Title}}: {{values.points}}<br></p></div>
+
+            </div>
+
               <a href="/toplist.html" class="btn btn-primary btn-lg active col-md-12 text-center botmarg" role="button" aria-pressed="true">Go to your Toplist</a>
+              <br>
+                <br>
+                  <br>
+                  <br>
+                  <br>
+
               <div class="center">
                 <div ng-if="moviectrl.oldMovieOne != ''">
                   <img class="img-responsive center-block picpad img-circle" ng-src="posters/{{moviectrl.oldMovieOne.Poster}}_small.jpg"
@@ -44,7 +56,9 @@
                   ng-if="moviectrl.picked != 'Mov2'">
                 </div>
               </div>
-            </form>
+
+
+
 
 
           </div>
@@ -55,11 +69,14 @@
               {{ moviectrl.movieTwo.Title}}
               ({{ moviectrl.movieTwo.Year}})</h4>
               <button type="button" class="btn btn-success" ng-click="moviectrl.pickMovie($event)" data-value="Mov2">Pick Movie</button>
-              <button type="button" class="btn btn-warning" ng-click="moviectrl.changeMovieTwo()">I have not seen Movie</button>
-              </div>
-            <img class="img-responsive center-block picpad" ng-src="posters/{{moviectrl.movieTwo.Poster}}.jpg">
+              <button type="button" class="btn btn-warning" ng-click="moviectrl.changeMovieTwo()" data-value="Mov2">I have not seen Movie</button>
+            </div>
+
+            </div>
+            <img class="img-responsive center-block picpad clickpic" ng-click="moviectrl.pickMovie($event)" ng-src="posters/{{moviectrl.movieTwo.Poster}}.jpg">
           </div>
         </div>
     </div>
+
   </body>
 </html>

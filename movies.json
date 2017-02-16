@@ -2,4 +2,9 @@
   {"id": "2", "Title":"Blade Runner", "Poster": "BladeRunner", "Year": "1982" },
   {"id": "23", "Title": "The Hobbit: the Battle of the Five Armies", "Poster": "TheHobbit_TheBattleoftheFiveArmies", "Year": "2014"},
   {"id": "24", "Title":"Metropolis", "Poster": "Metropolis", "Year": "1929" },
-  {"id": "25", "Title":"Alien", "Poster": "Alien", "Year": "1979" } ]}
+  {"id": "25", "Title":"Alien", "Poster": "Alien", "Year": "1979" },
+  {"id": "250", "Title":"Gangs of Wasseypur", "Poster": "GangsofWasseypur", "Year": "2012", "Description": "A clash between Sultan and Shahid Khan leads to the expulsion of Khan from Wasseypur, and ignites a deadly blood feud spanning three generations." },
+  {"id": "247", "Title":	"Sin City", "Poster": "SinCity","Year":	"2005", "Description":	"A film that explores the dark and miserable town, Basin City, and tells the story of three different people, all caught up in violent corruption."},
+  {"id": "248",	"Title":	"Kind Hearts and Coronets","Poster": "KindHeartsandCoronets",	"Year":	"1949", "Description":	"A distant poor relative of the Duke of D'Ascoyne plots to inherit the title by murdering the eight other heirs who stand ahead of him in the line of succession."},
+  {"id": "249",	"Title":	"Song of the Sea", "Poster": "SongoftheSea",	"Year":	"2014", "Description":	"Ben, a young Irish boy, and his little sister Saoirse, a girl who can turn into a seal, go on an adventure to free the faeries and save the spirit world."}
+  ]}
