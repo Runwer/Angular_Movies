@@ -2,8 +2,10 @@
 <html ng-app='MovieApp'>
   <head>
     <meta charset="utf-8">
+    <meta name="google-site-verification" content="5UavuAmiguFlHcK9Xzpwm-cQDcy8C31-FkV0QCN8ZmU" />
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
     <script type="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
@@ -32,6 +34,7 @@
         </a>
         <div ng-repeat="values in lst"><a href="#" class="list-group-item list-group-item-action">{{$index+1}}) {{values.Title}}: {{values.points}}</a>
 
+          </div>
       </div>
       </div>
       </div>
