@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('MovieApp', [])
+  angular.module('MovieApp', ['ngCookies'])
   .controller('MovieController', MovieController)
   .controller('MovieList', MovieList)
   .service('MovieDataService',  MovieDataService)
@@ -17,8 +17,8 @@
 
   }
 
-  MovieController.$inject = ['MovieDataService', '$http','MovieListService', '$rootScope'];
-  function MovieController(MovieDataService, $http,MovieListService, $rootScope) {
+  MovieController.$inject = ['MovieDataService', '$http','MovieListService', '$rootScope', '$cookieStore'];
+  function MovieController(MovieDataService, $http,MovieListService, $rootScope, $cookieStore) {
     var moviectrl = this;
 
     MovieDataService.newMovies("2").then(function(d){
@@ -94,7 +94,7 @@
       method: 'GET',
       url: "http://127.0.0.1:5000/moviedb/api/v1.0/movies?count="+count
       }).then(function successCallback(response) {
-        return response.data.movies;
+        return response.data; //Probably need to remove movies
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -120,7 +120,7 @@
       method: 'GET',
       url: "http://127.0.0.1:5000/moviedb/api/v1.0/toplist"
       }).then(function successCallback(response) {
-        return response.data.list;
+        return response.data;
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
