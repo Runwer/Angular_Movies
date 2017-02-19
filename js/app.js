@@ -58,7 +58,7 @@
               };
       };
 
-      $http.post('http://127.0.0.1:5000/moviedb/api/v1.0/edge', data)
+      $http.post('http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/edge', data)
             .then(function (data, status, headers) {
                 console.log(data);
             }, function errorCallback(response) {
@@ -110,7 +110,7 @@
     service.newMovies = function (count){
       var promise = $http({
       method: 'GET',
-      url: "http://127.0.0.1:5000/moviedb/api/v1.0/movies?count="+count
+      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/movies?count="+count
       }).then(function successCallback(response) {
         return response.data; //Probably need to remove movies
       }, function errorCallback(response) {
@@ -124,7 +124,7 @@
     service.pctMovies = function (id1, id2){
       var promise = $http({
       method: 'GET',
-      url: "http://127.0.0.1:5000/moviedb/api/v1.0/moviepct?mov1="+id1+"&mov2="+id2
+      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/moviepct?mov1="+id1+"&mov2="+id2
       }).then(function successCallback(response) {
         return response.data; //Probably need to remove movies
       }, function errorCallback(response) {
@@ -150,7 +150,7 @@
     service.listMovies = function (){
       var promise = $http({
       method: 'GET',
-      url: "http://127.0.0.1:5000/moviedb/api/v1.0/toplist"
+      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/toplist"
       }).then(function successCallback(response) {
         return response.data;
       }, function errorCallback(response) {
