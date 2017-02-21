@@ -22,7 +22,7 @@
     var moviectrl = this;
     // Retrieving a cookie
     moviectrl.userID = $cookies.getObject('uid');
-
+    // needs to be rewritten for actual cookiesetting - Setting cookie
     if (typeof moviectrl.userID !== 'undefined') {
       $rootScope.greeting = "Welcome Back" + moviectrl.userID;
     }
@@ -30,8 +30,6 @@
       $rootScope.greeting = "Its your first time and we are stoked to meet you.";
       $cookies.putObject('uid', '5', {expires: new Date(3017,6, 30)});
     }
-    // Setting a cookie
-
 
 
     MovieDataService.newMovies("2").then(function(d){
@@ -58,7 +56,7 @@
               };
       };
 
-      $http.post('http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/edge', data)
+      $http.post($rootScope.apiuri+'moviedb/api/v1.0/edge', data)
             .then(function (data, status, headers) {
                 console.log(data);
             }, function errorCallback(response) {
@@ -100,17 +98,18 @@
 
 
   };
-  function MovieDataService ($http) {
+  function MovieDataService ($http, $rootScope) {
     var service = this;
-
-
+    //setting api URI
+    $rootScope.apiuri = "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/"
+    //$rootScope.apiuri = "http://127.0.0.1:5000/"
     //List of movies
     var movieout = [];
 
     service.newMovies = function (count){
       var promise = $http({
       method: 'GET',
-      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/movies?count="+count
+      url: $rootScope.apiuri+"moviedb/api/v1.0/movies?count="+count
       }).then(function successCallback(response) {
         return response.data; //Probably need to remove movies
       }, function errorCallback(response) {
@@ -124,7 +123,7 @@
     service.pctMovies = function (id1, id2){
       var promise = $http({
       method: 'GET',
-      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/moviepct?mov1="+id1+"&mov2="+id2
+      url: $rootScope.apiuri+"moviedb/api/v1.0/moviepct?mov1="+id1+"&mov2="+id2
       }).then(function successCallback(response) {
         return response.data; //Probably need to remove movies
       }, function errorCallback(response) {
@@ -140,8 +139,13 @@
     }
   }
 
-  function MovieListService ($http) {
+  function MovieListService ($http, $rootScope) {
     var service = this;
+    $rootScope.apiuri = "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/"
+    //$rootScope.apiuri = "http://127.0.0.1:5000/"
+
+
+
 
 
     //List of movies
@@ -150,7 +154,7 @@
     service.listMovies = function (){
       var promise = $http({
       method: 'GET',
-      url: "http://flask-env.3cnseq7p2s.us-west-2.elasticbeanstalk.com/moviedb/api/v1.0/toplist"
+      url: $rootScope.apiuri + "moviedb/api/v1.0/toplist"
       }).then(function successCallback(response) {
         return response.data;
       }, function errorCallback(response) {
