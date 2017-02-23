@@ -42,7 +42,7 @@
 
     this.pickMovie = function (e){
       moviectrl.picked = e.target.getAttribute('data-value');
-      if(moviectrl.picked == "Mov1") {
+      if(moviectrl.picked == "Mov1") { 
         var data = {
                   user: moviectrl.userID,
                   win: moviectrl.movieOne.id,
