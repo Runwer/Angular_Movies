@@ -42,7 +42,7 @@
 
     this.pickMovie = function (e){
       moviectrl.picked = e.target.getAttribute('data-value');
-      if(moviectrl.picked == "Mov1") { 
+      if(moviectrl.picked == "Mov1") {
         var data = {
                   user: moviectrl.userID,
                   win: moviectrl.movieOne.id,
@@ -58,7 +58,7 @@
 
       $http.post($rootScope.apiuri+'moviedb/api/v1.0/edge', data)
             .then(function (data, status, headers) {
-                console.log(data);
+                //console.log(data);
             }, function errorCallback(response) {
               // called asynchronously if an error occurs
               // or server returns response with an error status.
